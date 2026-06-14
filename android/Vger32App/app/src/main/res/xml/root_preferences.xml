@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/pref_header_modules">
+        <EditTextPreference
+            android:defaultValue="7"
+            android:inputType="number"
+            android:key="module_purge_days"
+            android:title="@string/pref_item_module_purge_days"
+            android:summary="@string/pref_item_module_purge_days_summary"
+            app:useSimpleSummaryProvider="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_discovery">
+        <ListPreference
+            android:defaultValue="400"
+            android:entries="@array/scan_timeout_labels"
+            android:entryValues="@array/scan_timeout_values"
+            android:key="scan_timeout"
+            android:title="@string/pref_item_scan_timeout"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="80"
+            android:inputType="number"
+            android:key="module_http_port"
+            android:title="@string/pref_item_module_http_port"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="4210"
+            android:inputType="number"
+            android:key="udp_discovery_port"
+            android:title="@string/pref_item_udp_discovery_port"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="vger32:discover"
+            android:key="udp_discovery_magic"
+            android:title="@string/pref_item_udp_discovery_magic"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="_vger32._tcp"
+            android:key="mdns_service_type"
+            android:title="@string/pref_item_mdns_service_type"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_fingerprinting">
+        <ListPreference
+            android:defaultValue="20"
+            android:entries="@array/fingerprint_max_networks_labels"
+            android:entryValues="@array/fingerprint_max_networks_values"
+            android:key="fingerprint_max_networks"
+            android:title="@string/pref_item_fingerprint_max_networks"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:defaultValue="-85"
+            android:entries="@array/fingerprint_min_signal_labels"
+            android:entryValues="@array/fingerprint_min_signal_values"
+            android:key="fingerprint_min_signal"
+            android:title="@string/pref_item_fingerprint_min_signal"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="save_5ghz_networks"
+            android:title="@string/pref_item_save_5ghz"
+            android:summary="@string/pref_item_save_5ghz_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_mqtt">
+        <EditTextPreference
+            android:defaultValue="broker.hivemq.com"
+            android:key="mqtt_broker_host"
+            android:title="@string/pref_item_mqtt_broker_host"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="1883"
+            android:inputType="number"
+            android:key="mqtt_broker_port"
+            android:title="@string/pref_item_mqtt_broker_port"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            android:defaultValue="vger32"
+            android:key="mqtt_topic_base"
+            android:title="@string/pref_item_mqtt_topic_base"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_security">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="unlock_code_enabled"
+            android:summary="@string/pref_item_unlock_code_summary"
+            android:title="@string/pref_item_unlock_code" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:inputType="textPassword"
+            android:key="default_api_key"
+            android:title="@string/pref_item_default_api_key"
+            android:summary="@string/pref_item_default_api_key_summary"
+            app:useSimpleSummaryProvider="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_scrambler">
+        <EditTextPreference
+            android:defaultValue=""
+            android:inputType="textPassword"
+            android:key="default_scrambler_key"
+            android:title="@string/pref_item_scrambler_key"
+            android:summary="@string/pref_item_scrambler_key_summary"
+            app:useSimpleSummaryProvider="false" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="mqtt_scrambled"
+            android:summary="@string/pref_item_scrambler_enabled_summary"
+            android:title="@string/pref_item_scrambler_enabled" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="http_scrambled"
+            android:title="@string/pref_item_http_scrambler_enabled"
+            android:summary="@string/pref_item_http_scrambler_enabled_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_header_logs">
+        <ListPreference
+            android:key="log_level"
+            android:title="@string/pref_item_log_level"
+            android:entries="@array/log_levels"
+            android:entryValues="@array/log_levels"
+            android:defaultValue="INFO"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

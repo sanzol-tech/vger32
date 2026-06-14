@@ -1,0 +1,356 @@
+ESTÁNDARES DE CODIFICACIÓN DEL PROYECTO
+ESP32 IoT Core — Arduino / PlatformIO / Arduino ESP32 Core 3.x
+================================================================================
+
+================================================================================
+1. IDIOMA
+================================================================================
+
+Todo el código en INGLÉS: variables, funciones, comentarios, macros, defines,
+nombres de archivo.
+Excepción: este archivo y documentación de proyecto están en español.
+
+================================================================================
+2. PARADIGMA
+================================================================================
+
+- C++17 procedural. Sin clases, sin herencia, sin polimorfismo.
+- struct solo como contenedor de datos, sin métodos.
+- Templates prohibidos salvo casos documentados explícitamente.
+- EVITAR: malloc, new, delete, free.
+- Toda función no declarada en el .h debe ser static. Es el único mecanismo
+  de encapsulación disponible — sin static, la función contamina el namespace
+  global y puede colisionar con otras TUs.
+
+================================================================================
+3. NOMBRES
+================================================================================
+
+  variables y funciones   snake_case
+  constantes y macros     UPPER_SNAKE_CASE
+  struct                  PascalCase
+  typedef / using         snake_case con sufijo _t      ej: mqtt_callback_t
+  punteros a función      snake_case con sufijo _t      ej: iqueue_callback_t
+  enum                    snake_case con sufijo _t      ej: wifi_state_t
+  valores de enum         UPPER_SNAKE_CASE              ej: WIFI_STATE_CONNECTED
+  archivos .h / .cpp      snake_case
+
+================================================================================
+4. MEMORIA
+================================================================================
+
+- Buffers internos: char[] estático de tamaño fijo definido en compile-time.
+- String de Arduino: aceptable cuando el resultado es consumido inmediatamente
+  por el caller sin retener el puntero, y el tamaño es variable o la firma
+  con buffer quedaría torpe (ej: scrambler_encode, mqtt publish). Prohibido
+  en hot paths y en funciones llamadas desde ISR o loop tight.
+- Variables globales de módulo: static, en el .cpp, nunca en el .h.
+- Variables compartidas entre módulos: inline en el .h (ej: mqtt_enabled).
+
+================================================================================
+5. CONSTANTES
+================================================================================
+
+- Valores compile-time: constexpr, no #define (salvo flags condicionales).
+- Sin valores mágicos en el código.
+- Constantes de hardware (pins, intervalos, tamaños): en config/constants.h.
+- Flags de compilación condicional: #define en constants.h o build_flags en
+  platformio.ini.
+- Literales de tiempo: usar los sufijos de constants.h para legibilidad:
+    15_seconds, 2_minutes, 1_hours
+
+================================================================================
+6. ARQUITECTURA Y MÓDULOS
+================================================================================
+
+JERARQUÍA (de más bajo a más alto nivel):
+    hardware drivers → sensor core → network → mqtt → webserver → profiles
+
+Un módulo de nivel N no incluye headers de nivel N+1.
+Sin dependencias circulares.
+
+PATRONES:
+
+  Driver
+    _register(...)      configura hardware, guarda estado en statics locales
+    _read() / _update() lectura o tick
+    Estado interno:     static en el .cpp, nunca expuesto en el .h
+
+  Subsistema
+    _init(...)    configura, registra callbacks, no toca hardware de red
+    _handle()     conduce una FSM o gestión asíncrona — llamar cada ciclo
+    _update()     tick acotado, sin FSM de red — llamar cada ciclo
+    Flag activo:  inline bool module_enabled en el .h (ej: mqtt_enabled)
+
+  _handle vs _update:
+    _handle  →  tiene FSM interna o maneja reconexiones (wifi_manager, mqtt,
+                dashboard, sleep_manager)
+    _update  →  trabajo acotado, sin estado de red (sensor_reader, ky012, pir)
+
+  Perfil de misión
+    _setup()   orquesta inits, sin lógica propia
+    _loop()    orquesta handles/updates, sin lógica propia
+
+PERFIL DE MISIÓN vs PERFIL DE HARDWARE:
+
+  Un perfil de misión (ej: MISSION_WEATHER_STATION) define qué hace el
+  dispositivo — sensores activos, MQTT, estrategia de sleep. No contiene
+  #ifdef ni números de pin. Es independiente del hardware.
+
+  Un perfil de hardware (ej: HARDWARE_WEATHER_V1) define qué tiene la placa —
+  pins, tipo de LED, periféricos disponibles. Es una colección plana de
+  #defines y vive en src/profiles/hardware/.
+
+  El perfil de misión incluye hardware_manager.h — un dispatcher que mapea
+  el flag HARDWARE_* activo al header de perfil de hardware correspondiente.
+  Es el único lugar donde vive la selección de hardware.
+
+  La selección activa de misión y hardware se hace en un único archivo:
+  src/profiles/active_profile.h
+
+================================================================================
+7. LOOP PRINCIPAL
+================================================================================
+
+loop() DEBE ceder control al scheduler:
+
+    void loop() {
+        module_a_handle();
+        module_b_update();
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+
+Throttles con millis() son correctos DENTRO de cada módulo, nunca en loop():
+
+    void sensor_reader_update() {
+        if (millis() - last_read < INTERVAL_MS) return;
+        last_read = millis();
+        // ...
+    }
+
+================================================================================
+8. INTERRUPCIONES
+================================================================================
+
+- ISR: solo encolar. IRAM_ATTR obligatorio.
+- Prohibido en ISR: I2C, SPI, Serial, cualquier función FreeRTOS.
+- Usar sensor_iqueue_push() para pasar eventos al loop:
+
+    static void IRAM_ATTR sensor_isr() {
+        sensor_iqueue_push(on_event, value, millis());
+    }
+
+    static void on_event(float value, uint32_t timestamp) {
+        sensor_add_sample(&sensor_value, value, timestamp);
+    }
+
+- sensor_iqueue_process() se llama cada ciclo en sensor_reader_update().
+
+================================================================================
+9. DOCUMENTACIÓN
+================================================================================
+
+.h — CONTRATO
+    El header del módulo es lo único que necesita leer quien lo usa.
+    Documenta: propósito del módulo, cuándo llamar cada función, qué retorna,
+    y restricciones de contexto (seguro desde ISR, solo desde setup(), etc.).
+
+        /*
+         * mqtt_client.h
+         *
+         * MQTT transport. Call mqtt_init() from setup(), mqtt_handle() each loop().
+         */
+
+.cpp — IMPLEMENTACIÓN
+    Documenta lo que el .h no dice: formato de archivo, decisiones de algoritmo,
+    workarounds de hardware, decisiones no obvias.
+    Nunca repite el propósito del módulo — eso vive en el .h.
+
+        /*
+         * boot_logger.cpp
+         *
+         * File format: plain text, one entry per line — "<timestamp> <reason>\n"
+         * Circular buffer of MAX_ITEMS_LOG entries, oldest overwritten first.
+         */
+
+.h vs .cpp — QUÉ VA DÓNDE:
+
+    .h   propósito del módulo, contratos de funciones públicas, restricciones de uso
+    .cpp formato de archivo, algoritmo, decisiones de implementación no obvias
+
+    Si un .cpp no tiene nada que agregar a lo que ya dice el .h, su header
+    es solo el nombre del archivo y una línea que confirma que es la implementación:
+
+        /*
+         * board_led.cpp
+         *
+         * Implementation of board_led.h.
+         */
+
+COMENTARIOS DE FUNCIÓN:
+    Solo cuando el nombre no es suficiente.
+    Estos no necesitan comentario:
+        void log_buffer_clear();
+        bool mqtt_is_connected();
+    Este sí:
+        // Returns a pointer to an internal static buffer — valid until next call.
+        const char *log_buffer_get();
+
+SEPARADORES DE SECCIÓN:
+    Solo cuando el archivo tiene múltiples secciones con 3+ elementos cada una.
+    Archivos de menos de ~80 líneas: sin separadores.
+
+    // ==========================================
+    // NOMBRE DE SECCIÓN
+    // ==========================================
+
+CONTRATO DE BUFFERS ESTÁTICOS:
+    Las funciones que retornan const char* a un buffer estático interno deben
+    documentarlo en el .h. El caller no es dueño del puntero: no debe guardarlo
+    ni asumir que sobrevive a la próxima llamada a la misma función.
+
+    // Returns a pointer to an internal static buffer — valid until next call.
+    const char *get_status();
+
+BUFFERS Y FORMATOS DE SERIALIZACIÓN:
+    Los buffers cuyo tamaño no es obvio deben tener un comentario que muestre
+    cómo se compone: campos, tamaños máximos, y total. Igual para funciones que
+    producen un formato no estándar: documentar la estructura con un ejemplo.
+
+    // "moduleId/subtopic\0" → 32 + 1 + 64 + 1 = 98 → 128 con margen
+    static char topic_buf[128];
+
+    // formato por línea: "SSID|MAC|RSSI|CHANNEL\n"
+    // ej: "MiRed|AABBCCDDEEFF|-72|6\n" → max ~60 chars × WIFI_SCAN_MAX_APS
+    static char scan_buf[WIFI_SCAN_MAX_APS * WIFI_SCAN_MAX_ROW_LEN + 1];
+
+================================================================================
+10. COMPATIBILIDAD MULTI-CHIP
+================================================================================
+
+Chips soportados: ESP32, ESP32-S3, ESP32-C3, ESP32-C6
+
+- No asumir que una API del ESP32 existe en todos los chips. Verificar en IDF.
+- Compilación condicional por chip:
+    CONFIG_IDF_TARGET_ESP32 / ESP32S3 / ESP32C3 / ESP32C6
+
+- temperatureRead(): disponible en todos con core 3.x. Devuelve temperatura
+  del die (50–90°C típico), no temperatura ambiente.
+
+- Serial en C3/C6 (USB-CDC): los mensajes de setup() se pierden si el host
+  no conectó antes del boot. Usar timeout para no bloquear en producción,
+  y flush() para garantizar que los mensajes de boot llegaron:
+
+    #if ARDUINO_USB_CDC_ON_BOOT
+        uint32_t t = millis();
+        while (!Serial && millis() - t < 3000)
+            vTaskDelay(pdMS_TO_TICKS(10));
+        Serial.flush();
+    #endif
+
+- ADC2 en ESP32: evitar si WiFi está activo (interferencia).
+
+================================================================================
+11. PLATAFORMA Y BUILD
+================================================================================
+
+- Core: Arduino ESP32 Core 3.x. Core 2.x está end-of-life, no usar.
+- Plataforma: pioarduino (no platformio/espressif32 — no soporta core 3.x).
+    platform = https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip
+- LDF mode: lib_ldf_mode = chain (no deep+, rompe resolución de Network/WebServer).
+- Particiones: huge_app.csv en todos los environments (core 3.x ocupa ~600KB más).
+
+================================================================================
+12. LOGGING
+================================================================================
+
+- Usar los macros de config/logger.h. Prohibido usar Serial.print/printf
+  directamente en el código de producción.
+
+- El nivel de log tiene dos capas:
+    Techo compile-time  — LOG_LEVEL en platformio.ini (por defecto: LOG_LEVEL_INFO).
+                          Los macros por encima de este nivel compilan a nada — overhead cero.
+    Nivel runtime       — cfg_cap_log_level en capabilities (NVS namespace "caps").
+                          Se puede cambiar desde el dashboard o via cmd/capability
+                          sin recompilar. No puede superar el techo de compile-time.
+
+- Criterio de niveles:
+
+    LOG_FATAL   condición irrecuperable — el sistema no puede continuar
+    LOG_ERROR   fallo de hardware, sensor no encontrado, escritura fallida
+    LOG_WARN    condición inesperada pero el sistema puede continuar
+    LOG_INFO    eventos normales de ciclo de vida (init, connect, disconnect)
+    LOG_DEBUG   trazas de loop, valores de sensores, timing
+
+- Formato: los macros son printf-style. Incluir \n explícito al final.
+
+    LOG_INFO("[WiFi] Connected, IP: %s\n", WiFi.localIP().toString().c_str());
+    LOG_ERROR("[SHT31] Sensor not found @ 0x%02X\n", addr);
+    LOG_DEBUG("[Localizer] Score %s: %u%%\n", name, score);
+
+- El tag de módulo va entre corchetes al inicio del mensaje: [WiFi], [MQTT],
+  [Localizer], etc.
+
+================================================================================
+13. CONFIGURACIÓN PERSISTENTE
+================================================================================
+
+El proyecto usa dos mecanismos de persistencia con responsabilidades distintas:
+
+  NVS (Preferences)       → config/preferences.h
+    Module ID y MQTT. Valores simples, acceso rápido en boot.
+    API: preferences_load(), preferences_save(), preferences_from_text(),
+         preferences_to_text().
+
+  NVS (Capabilities)      → config/capabilities.h
+    Flags de capacidades runtime. Namespace NVS "caps", independiente de preferences.
+    API: capabilities_load(), capabilities_save(), capabilities_from_text(),
+         capabilities_to_text().
+
+  LittleFS                → config/known_networks.h
+    Redes WiFi conocidas. Lista variable, hasta KNOWN_NET_MAX entradas.
+    API: known_networks_load(), known_networks_save(), known_networks_from_text(),
+         known_networks_to_text().
+    También en LittleFS: wifi_fingerprints.dat (localizer), dashboard webapp,
+    keys.cfg (claves sensibles).
+
+FORMATO DE INTERCAMBIO (FIELD_SEP):
+    El carácter 0x1F (ASCII Unit Separator, constante FIELD_SEP en constants.h)
+    se usa como separador de campos en los payloads de texto plano entre el
+    backend y el dashboard. Nunca aparece en SSIDs, MACs ni passwords.
+
+    Formato preferences:
+        moduleId\x1FVGER_12345\n
+        mqttServer\x1Fbroker.hivemq.com\n
+
+    Formato known_networks (una red por línea):
+        S\x1FMiRed\x1F********\n      ← SSID con password (enmascarada en GET)
+        S\x1FOficina\x1F\n            ← SSID red abierta
+        M\x1FAABBCCDDEEFF\x1F\n       ← conexión por MAC, red abierta
+
+    El dashboard expande el formato compacto a texto legible para el usuario
+    y lo comprime de vuelta antes de cada POST. El ESP32 nunca ve el formato
+    verbose.
+
+PASSWORDS EN EL API:
+    known_networks_to_text() enmascara las passwords: "********" si tiene
+    password, "" si red abierta. El backend recupera la password almacenada
+    cuando recibe "********" en un POST — el frontend nunca necesita conocer
+    la password real.
+SIN JSON EN EL API HTTP:
+    Todos los endpoints usan text/plain. JSON está prohibido como formato
+    de intercambio entre el firmware y el dashboard.
+
+    Los separadores disponibles son dos:
+        KV_SEP    '='     para valores que no contienen '=' ni ':' (IDs, IPs,
+                          números, flags, enums). Formato: clave=valor\n
+        FIELD_SEP 0x1F    para valores arbitrarios (passwords, URLs, SSIDs).
+
+    Usar KV_SEP por defecto. Usar FIELD_SEP solo cuando el valor puede
+    contener el separador simple.
+
+RESPUESTAS HTTP:
+    El status HTTP comunica el resultado. El body es solo para datos.
+
+        200 + body vacío    → POST/DELETE exitoso
+        4xx/5xx + body      → error con detalle: err=Mensaje descriptivo\n

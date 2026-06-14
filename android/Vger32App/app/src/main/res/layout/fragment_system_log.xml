@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar — color200 distinguishes it from the scrollable content below -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/color200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_l"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="@dimen/text_size_s" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_copy"
+            style="@style/Widget.App.Button.IconBorderless"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_s"
+            app:icon="@drawable/ic_content_copy"
+            app:iconTint="?attr/colorOnSurface" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.App.Button.IconBorderless"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:padding="@dimen/spacing_s"
+            app:icon="@drawable/ic_delete_simple"
+            app:iconTint="?attr/colorOnSurface" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/topBarSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Vertical + invisible horizontal scroll — same pattern as ModuleLogFragment -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBarSeparator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inconsolata_condensed_regular"
+                    android:padding="@dimen/spacing_s"
+                    android:textSize="@dimen/text_size_m" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+================================================================================
+VGER32APP — TODO
+================================================================================
+
+⚠️  ANTES DE CODIFICAR CUALQUIER CAMBIO: leer CODE_CONVENTIONS.txt
+    Consultar antes de codificar: leer el código relevante, discutir el
+    enfoque, confirmar antes de producir archivos.
+
+================================================================================
+
+APP ANDROID
+  [ ] Sacar QR_KEY del repositorio
+      secrets.properties (raíz del proyecto, gitignored) + inyección en build.gradle
+      + QrConfigParser usa BuildConfig.QR_KEY + .gitignore actualizado
+
+SEGURIDAD
+  [ ] Preguntar al usuario si quiere usar huella al configurar el PIN por primera vez
+      Requiere: BiometricManager.canAuthenticate(), saveBiometricEnabled()
+      en SecurePreferencesManager, dialog yes/no
+
+TEST DE INTEGRACIÓN
+  [ ] Confirmar que la app decodifica correctamente QRs generados con el nuevo Scrambler
+      End-to-end: generador (HTML) ↔ app (QrConfigParser + Scrambler.java)
+
+AUDITORÍA — BAJA PRIORIDAD
+  [ ] [8]  isAuthError: eliminar dead code msg.contains("Unauthorized")
+  [ ] [9]  ModuleHttpVM: campos volatile (ventana chica, bajo riesgo)
+  [ ] [13] onTerminate(): código muerto, inocuo

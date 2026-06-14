@@ -1,0 +1,36 @@
+﻿# Build files and generated directories
+**/build/
+
+# Android Studio specific files and directories
+.idea/
+local.properties
+/.idea/workspace.xml
+/.idea/libraries
+
+# System configuration files
+.DS_Store
+Thumbs.db
+
+# Java specific files
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Gradle specific files
+.gradle/
+/gradle-wrapper.jar
+/gradle-wrapper.properties
+
+# Signing credentials — never commit
+signing.properties
+
+# Operating system generated files
+*~.nfs
+*.swp
+*.bak
+
+# Temporary files
+*.tmp
+*.temp

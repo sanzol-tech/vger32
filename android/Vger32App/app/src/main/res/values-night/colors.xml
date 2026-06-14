@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Grayscale scale — night: 000=black → 900=white -->
+    <color name="color000">#ff000000</color>
+    <color name="color100">#ff101010</color>
+    <color name="color200">#ff303030</color>
+    <color name="color300">#ff505050</color>
+    <color name="color400">#ff707070</color>
+    <color name="color500">#ff909090</color>
+    <color name="color600">#ffb0b0b0</color>
+    <color name="color700">#ffd0d0d0</color>
+    <color name="color800">#fff0f0f0</color>
+    <color name="color900">#ffffffff</color>
+
+    <!-- Semantic colors -->
+    <color name="RED">#ffD14317</color>
+    <color name="YELLOW">#ffE0B90D</color>
+    <color name="BLUE">#ff1877CA</color>
+
+    <!-- Legacy UI -->
+    <color name="cardView">#ff2C2C2C</color>
+    <color name="customBar">#ff404040</color>
+    <color name="customBarText">#fff0f0f0</color>
+    <color name="iconMenu">#ffffffff</color>
+    <color name="separator">#ff404040</color>
+    <color name="watermark">#ff333333</color>
+
+    <!-- Brand — vger32 green (night: dimmed, not full neon) -->
+    <color name="brand100">#ff004D2A</color>
+    <color name="brand200">#ff00C875</color>
+    <color name="brand300">#ff00E87A</color>
+    <color name="brand400">#ff00FF88</color>
+    <color name="brand_on">#ff000000</color>
+
+    <!-- Module item selected -->
+    <color name="color_item_selected">#5500C875</color>
+
+</resources>

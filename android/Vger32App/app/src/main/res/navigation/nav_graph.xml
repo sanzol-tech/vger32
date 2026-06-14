@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/moduleFragment">
+
+    <fragment
+        android:id="@+id/moduleFragment"
+        android:name="ar.vger32app.ui.module.ModulesFragment"
+        android:label="Modules" />
+
+    <fragment
+        android:id="@+id/moduleMqttFragment"
+        android:name="ar.vger32app.ui.mqtt.ModuleMqttFragment"
+        android:label="MQTT" />
+
+    <fragment
+        android:id="@+id/moduleHttpFragment"
+        android:name="ar.vger32app.ui.http.ModuleHttpFragment"
+        android:label="HTTP">
+        <action
+            android:id="@+id/action_http_to_module_log"
+            app:destination="@id/moduleLogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/localizerFragment"
+        android:name="ar.vger32app.ui.localizer.LocalizerFragment"
+        android:label="Localizer" />
+
+    <fragment
+        android:id="@+id/systemMenuFragment"
+        android:name="ar.vger32app.ui.system.SystemMenuFragment"
+        android:label="System Menu">
+        <action
+            android:id="@+id/action_system_menu_to_preferences"
+            app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_system_menu_to_log"
+            app:destination="@id/systemLogFragment" />
+        <action
+            android:id="@+id/action_system_menu_to_unlock"
+            app:destination="@id/unlockFragment" />
+        <action
+            android:id="@+id/action_system_menu_to_import_config"
+            app:destination="@id/importConfigFragment" />
+        <action
+            android:id="@+id/action_system_menu_to_about"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="ar.vger32app.ui.system.PreferencesFragment"
+        android:label="Preferences" />
+
+    <fragment
+        android:id="@+id/systemLogFragment"
+        android:name="ar.vger32app.ui.system.SystemLogFragment"
+        android:label="@string/title_system_log" />
+
+    <fragment
+        android:id="@+id/moduleLogFragment"
+        android:name="ar.vger32app.ui.http.ModuleLogFragment"
+        android:label="@string/title_module_log" />
+
+    <fragment
+        android:id="@+id/importConfigFragment"
+        android:name="ar.vger32app.ui.system.ImportConfigFragment"
+        android:label="@string/menu_import_config" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ar.vger32app.ui.system.AboutFragment"
+        android:label="@string/menu_about" />
+
+    <fragment
+        android:id="@+id/unlockFragment"
+        android:name="ar.vger32app.ui.auth.UnlockFragment"
+        android:label="@string/title_unlock">
+        <argument
+            android:name="mode"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="destinationId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+</navigation>

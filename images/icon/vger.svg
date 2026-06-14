@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feMerge>
+        <feMergeNode in="offsetblur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.2 0 0 0 0 1 0 0 0 0 0.2 0 0 0 1 0"/>
+    </filter>
+  </defs>
+
+  <rect width="108" height="108" fill="#000000"/>
+
+  <!-- Chip ESP32 más grande, con pines tocando los bordes -->
+  <g filter="url(#glow)" stroke="#00FF00" stroke-width="1.8" fill="none">
+    <rect x="18" y="18" width="72" height="72" rx="6" stroke="#00FF00"/>
+    <!-- Pines laterales extendidos hasta el borde -->
+    <line x1="6" y1="30" x2="18" y2="30" stroke="#00FF00"/>
+    <line x1="6" y1="42" x2="18" y2="42" stroke="#00FF00"/>
+    <line x1="6" y1="54" x2="18" y2="54" stroke="#00FF00"/>
+    <line x1="6" y1="66" x2="18" y2="66" stroke="#00FF00"/>
+    <line x1="90" y1="30" x2="102" y2="30" stroke="#00FF00"/>
+    <line x1="90" y1="42" x2="102" y2="42" stroke="#00FF00"/>
+    <line x1="90" y1="54" x2="102" y2="54" stroke="#00FF00"/>
+    <line x1="90" y1="66" x2="102" y2="66" stroke="#00FF00"/>
+    <line x1="42" y1="6" x2="42" y2="18" stroke="#00FF00"/>
+    <line x1="54" y1="6" x2="54" y2="18" stroke="#00FF00"/>
+    <line x1="66" y1="6" x2="66" y2="18" stroke="#00FF00"/>
+    <line x1="42" y1="90" x2="42" y2="102" stroke="#00FF00"/>
+    <line x1="54" y1="90" x2="54" y2="102" stroke="#00FF00"/>
+    <line x1="66" y1="90" x2="66" y2="102" stroke="#00FF00"/>
+  </g>
+
+  <!-- Letra "V" más grande y gruesa -->
+  <g filter="url(#glow)" stroke="#00FF00" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M 34 38 L 54 72 L 74 38" stroke="#00FF00"/>
+    <path d="M 40 38 L 54 64 L 68 38" stroke="#00FF00" stroke-width="2.5" opacity="0.8"/>
+  </g>
+
+  <!-- Trazos de circuitos conectando la V al chip, ahora más extendidos -->
+  <g filter="url(#glow)" stroke="#00FF00" stroke-width="2" fill="none">
+    <path d="M 54 38 L 54 18" stroke="#00FF00"/>
+    <path d="M 74 42 L 90 42 L 90 30" stroke="#00FF00"/>
+    <path d="M 34 42 L 18 42 L 18 30" stroke="#00FF00"/>
+    <circle cx="54" cy="18" r="2.5" fill="#00FF00"/>
+    <circle cx="90" cy="30" r="2.5" fill="#00FF00"/>
+    <circle cx="18" cy="30" r="2.5" fill="#00FF00"/>
+  </g>
+
+  <!-- Ojo digital más grande -->
+  <g filter="url(#glow)" stroke="#00FF00" fill="none">
+    <circle cx="86" cy="86" r="12" stroke="#00FF00" stroke-width="2"/>
+    <line x1="86" y1="76" x2="86" y2="72" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="98" y1="86" x2="102" y2="86" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="86" y1="96" x2="86" y2="100" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="74" y1="86" x2="70" y2="86" stroke="#00FF00" stroke-width="1.5"/>
+  </g>
+</svg>

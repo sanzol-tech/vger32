@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="icon" format="reference" />
+    <attr name="text" format="string" />
+
+    <declare-styleable name="ControlItemButton">
+        <attr name="icon" />
+        <attr name="text" />
+    </declare-styleable>
+
+    <declare-styleable name="ControlMenuItem">
+        <attr name="icon" />
+        <attr name="text" />
+    </declare-styleable>
+
+</resources>

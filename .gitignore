@@ -1,0 +1,20 @@
+# Global sensitive files (anywhere in repo)
+*.pem
+*.crt
+*.key
+*.jks
+*.keystore
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*.bak
+
+# Executables (Windows)
+*.exe
+*.msi
+
+# OS garbage
+.DS_Store
+Thumbs.db

@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorPrimary">
+
+    <!-- Chip body + pins -->
+    <path
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="1"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M6,6h12v12h-12z M2,9h4 M2,12h4 M2,15h4 M18,9h4 M18,12h4 M18,15h4 M9,2v4 M12,2v4 M15,2v4 M9,18v4 M12,18v4 M15,18v4"
+        android:strokeLineJoin="round"/>
+
+    <!-- V mark -->
+    <path
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="1.4"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M9,10 L12,15 L15,10"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"/>
+
+    <!-- Digital eye -->
+    <group android:translateX="18" android:translateY="18">
+        <path
+            android:strokeColor="@android:color/white"
+            android:strokeWidth="0.8"
+            android:fillColor="@android:color/transparent"
+            android:pathData="M-2.5,0a2.5,2.5 0,1 0,5 0a2.5,2.5 0,1 0,-5 0"/>
+        <path
+            android:strokeColor="@android:color/white"
+            android:strokeWidth="0.6"
+            android:fillColor="@android:color/transparent"
+            android:pathData="M0,-2v-1 M2,0h1 M0,2v1 M-2,0h-1"/>
+    </group>
+
+</vector>

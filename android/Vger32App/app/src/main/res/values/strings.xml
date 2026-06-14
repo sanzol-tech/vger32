@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- APP -->
+
+    <string name="app_name">vger32</string>
+
+    <!-- ================================================================ -->
+    <!-- COMMON                                                           -->
+    <!-- ================================================================ -->
+
+    <!-- Buttons -->
+    <string name="btn_save">Save</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_fetch">Fetch</string>
+    <string name="btn_import">Import</string>
+    <string name="btn_upload">Upload</string>
+    <string name="btn_select">Select</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_export">Export</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_connect">Connect</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_ping_all">Ping all</string>
+    <string name="btn_unselect_module">Unselect module</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_select_module">Select module</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Errors -->
+    <string name="err_secure_storage_init">Secure storage unavailable. Please reinstall the application or contact support.</string>
+    <string name="err_no_browser">No browser installed.</string>
+
+    <!-- Status -->
+    <string name="status_loading">loading…</string>
+    <string name="status_saving">saving…</string>
+    <string name="status_fetching">Fetching…</string>
+    <string name="status_uploading">Uploading…</string>
+    <string name="status_no_data">(no data)</string>
+    <string name="status_invalid_value">You must enter a valid value</string>
+    <string name="status_no_module_selected">No module selected</string>
+    <string name="status_error_fmt">error: %s</string>
+
+    <!-- Hints -->
+    <string name="hint_message">message</string>
+
+    <!-- Shared UI -->
+    <string name="separator_dot"> · </string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_open_settings">Open Settings</string>
+    <string name="action_skip">Skip</string>
+
+    <!-- Accessibility -->
+    <string name="fab_discover_desc">Discover modules</string>
+    <string name="fab_commands_desc">Commands</string>
+
+    <!-- ================================================================ -->
+    <!-- NAV                                                              -->
+    <!-- ================================================================ -->
+
+    <!-- Bottom tabs -->
+    <string name="tab_modules">Modules</string>
+    <string name="tab_mqtt">MQTT</string>
+    <string name="tab_http">HTTP</string>
+    <string name="tab_localizer">Localizer</string>
+    <string name="tab_system">System</string>
+
+    <!-- Screen titles -->
+    <string name="title_unlock">Unlock</string>
+    <string name="title_system_log">System Log</string>
+    <string name="title_module_log">Module Log</string>
+    <string name="title_module_log_fmt">Module Log — %s</string>
+
+    <!-- ================================================================ -->
+    <!-- MODULES                                                          -->
+    <!-- ================================================================ -->
+
+    <string name="sheet_title_discovery">Discovery</string>
+
+    <!-- Discover sheet -->
+    <string name="menu_mqtt_ping">MQTT ping</string>
+    <string name="menu_mdns_discover">mDNS Discovery</string>
+    <string name="menu_udp_discover">UDP Discovery</string>
+    <string name="menu_lan_scan">Lan Scan</string>
+    <string name="menu_connect_by_ip">Connect by IP</string>
+    <string name="menu_connect_ap">Connect to AP</string>
+    <string name="menu_forget_all_modules">Forget all modules</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_connect_by_ip">Connect by IP</string>
+    <string name="hint_ip_address">192.168.0.x</string>
+    <string name="dialog_forget_module_message">Forget %s?</string>
+    <string name="dialog_forget_all_modules_message">Forget all modules?</string>
+
+    <!-- Status -->
+    <string name="status_no_wifi">No WiFi connection</string>
+    <string name="status_scan_stopped">Scan stopped</string>
+    <string name="status_scanning_subnet">Scanning %s.0/24…</string>
+    <string name="status_scanning_progress">Scanning… %1$d/254  ·  %2$d found</string>
+    <string name="status_no_modules_found">No modules found in %s.0/24</string>
+    <string name="status_modules_found">%1$d module(s) found in %2$s.0/24</string>
+    <string name="status_modules_known">%d module(s) known</string>
+    <string name="status_modules_loaded">%d module(s) loaded</string>
+    <string name="status_connecting_to_ip">Connecting to %s…</string>
+    <string name="status_module_found">Found: %s</string>
+    <string name="status_no_module_at_ip">No vger32 module at %s</string>
+    <string name="status_module_selected">Selected: %s</string>
+    <string name="status_mqtt_ping_sent">MQTT ping sent — waiting for responses…</string>
+    <string name="status_mdns_discovering">mDNS discovery in progress…</string>
+    <string name="status_mdns_found">%d module(s) found via mDNS</string>
+    <string name="status_mdns_none">No mDNS response</string>
+    <string name="status_udp_discovering">UDP discovery in progress…</string>
+    <string name="status_udp_found">%d module(s) found via UDP</string>
+    <string name="status_udp_none">No UDP response</string>
+
+    <!-- Discovery sources (displayed in module list item) -->
+    <string name="source_mqtt_pong">MQTT pong</string>
+    <string name="source_mdns">mDNS</string>
+    <string name="source_udp_discovery">UDP</string>
+    <string name="source_manual_ip">manual IP</string>
+    <string name="source_lan_scan">LAN scan</string>
+    <string name="source_http">HTTP</string>
+
+    <!-- Module display -->
+    <string name="module_none">NO MODULE SELECTED</string>
+
+    <!-- Module keys sheet -->
+    <string name="module_keys_title">Module keys</string>
+    <string name="module_keys_api_key_label">API key</string>
+    <string name="module_keys_scrambler_key_label">Scrambler key</string>
+    <string name="module_keys_hint_set">●●●● (tap to change)</string>
+    <string name="module_keys_hint_not_set">Not set</string>
+    <string name="module_keys_saved">Keys saved</string>
+    <string name="module_keys_cleared">Keys cleared</string>
+    <string name="btn_keys_clear">Clear keys</string>
+
+    <!-- API key dialog -->
+    <string name="api_key_title">API key</string>
+    <string name="api_key_title_module">API key — %s</string>
+    <string name="api_key_message">Enter the HTTP API key for this module.</string>
+
+    <!-- ================================================================ -->
+    <!-- HTTP                                                             -->
+    <!-- ================================================================ -->
+
+    <!-- Groups -->
+    <string name="http_group_web">Web</string>
+    <string name="http_group_monitor">Monitor</string>
+    <string name="http_group_actions">Actions</string>
+
+    <!-- Items -->
+    <string name="http_item_identity">System Identity</string>
+    <string name="http_item_identity_desc">chip, pid, IP, firmware version</string>
+    <string name="http_item_metrics">System Metrics</string>
+    <string name="http_item_metrics_desc">heap, uptime, RSSI</string>
+    <string name="http_item_sensors">Sensors</string>
+    <string name="http_item_sensors_desc">live readings from connected sensors</string>
+    <string name="http_item_boot_history">Boot History</string>
+    <string name="http_item_boot_history_desc">reset causes and timestamps</string>
+    <string name="http_item_logs">Module Log</string>
+    <string name="http_item_logs_desc">firmware log output</string>
+    <string name="http_item_dashboard">Dashboard</string>
+    <string name="http_item_dashboard_desc">open device web interface</string>
+    <string name="http_item_reboot">Reboot</string>
+    <string name="http_item_reboot_desc">reboot the device</string>
+    <string name="http_item_force_ap">AP Mode</string>
+    <string name="http_item_force_ap_desc">reboot into AP mode for configuration</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_reboot_message">Reboot %s? The device will be unreachable for a few seconds.</string>
+    <string name="dialog_force_ap_message">Switch %s to AP mode? The device will reboot and start a hotspot.</string>
+    <string name="dialog_clear_module_log_message">Clear the log on %s? This cannot be undone.</string>
+
+    <!-- ================================================================ -->
+    <!-- MQTT                                                             -->
+    <!-- ================================================================ -->
+
+    <!-- Command buttons -->
+    <string name="cmd_ping">ping</string>
+    <string name="cmd_force_ap">force ap</string>
+    <string name="cmd_publish_now">publish now</string>
+    <string name="cmd_sleep">sleep</string>
+    <string name="cmd_reboot">reboot</string>
+
+    <!-- Command dialogs -->
+    <string name="hint_sleep_value">Duration</string>
+    <string name="sleep_unit_s">s</string>
+    <string name="sleep_unit_m">m</string>
+    <string name="sleep_unit_h">h</string>
+    <string name="dialog_mqtt_reboot_message">Reboot %s via MQTT? The module will be unreachable for a few seconds.</string>
+    <string name="dialog_mqtt_sleep_title">Sleep</string>
+    <string name="dialog_clear_feed_message">Clear the MQTT feed?</string>
+
+    <string name="mqtt_all_modules">All modules</string>
+
+    <!-- Feed events -->
+    <string name="mqtt_event_session_started">session started</string>
+    <string name="mqtt_event_no_module_selected">no module selected</string>
+    <string name="mqtt_event_msg_broadcast">msg (broadcast): %s</string>
+    <string name="mqtt_event_msg_to_module">msg → %1$s: %2$s</string>
+
+    <!-- Feed actions -->
+    <string name="action_clear_feed">Clear</string>
+    <string name="clipboard_label_mqtt_feed">MQTT feed</string>
+
+    <!-- ================================================================ -->
+    <!-- LOCALIZER                                                        -->
+    <!-- ================================================================ -->
+
+    <!-- Tabs -->
+    <string name="localizer_tab_scan">SCAN</string>
+    <string name="localizer_tab_module">MODULE</string>
+    <string name="localizer_tab_storage">STORAGE</string>
+
+    <!-- Empty states -->
+    <string name="localizer_empty_scan">Tap Refresh to scan</string>
+    <string name="localizer_empty_module">Tap Fetch to scan from module</string>
+    <string name="localizer_empty_storage">No waypoints saved yet</string>
+
+    <!-- Status -->
+    <string name="status_scanning">Scanning…</string>
+    <string name="status_module_no_ip">Module has no IP</string>
+    <string name="status_no_networks_found">No networks found</string>
+    <string name="status_networks_count">%d networks</string>
+    <string name="status_scan_cached">\@ %s</string>
+    <string name="status_upload_ok">%d waypoint(s) uploaded</string>
+    <string name="status_import_ok">%d waypoint(s) imported</string>
+    <string name="status_download_ok">Saved to Downloads</string>
+
+    <!-- Headers -->
+    <string name="localizer_header_waypoints_count">%d waypoints</string>
+    <string name="localizer_header_select_waypoints">Select waypoints</string>
+    <string name="section_query">Query</string>
+
+    <!-- WiFi display -->
+    <string name="wifi_ssid_hidden">(hidden)</string>
+    <string name="wifi_bssid_fmt">%1$s  ch %2$02d</string>
+    <string name="wifi_rssi_fmt">%1$d dBm</string>
+    <string name="waypoint_meta_fmt">%1$d networks · %2$s</string>
+    <string name="waypoint_source_phone">Phone</string>
+
+    <!-- WiFi errors -->
+    <string name="wifi_error_disabled">WiFi is disabled.</string>
+    <string name="wifi_error_location_permission">Location permission not granted.</string>
+    <string name="wifi_error_no_networks">No networks found.</string>
+    <string name="wifi_error_scan_fmt">Scan error: %s</string>
+
+    <!-- Save waypoint dialog -->
+    <string name="dialog_save_waypoint">Save waypoint</string>
+    <string name="dialog_save_waypoint_top_networks">Will save top %d networks by signal strength</string>
+    <string name="hint_waypoint_name">Name (1–6 · A–Z 0–9)</string>
+    <string name="error_waypoint_name">1–6 chars A–Z0–9</string>
+
+    <!-- Delete dialog -->
+    <string name="dialog_delete_waypoints">Delete waypoints</string>
+    <string name="dialog_delete_waypoints_message">Delete %d waypoint(s)?</string>
+
+    <!-- Export -->
+    <string name="chooser_export_fingerprints">Export fingerprints</string>
+    <string name="export_error_no_file">Could not create file in Downloads</string>
+    <string name="export_error_no_stream">Could not open output stream</string>
+
+    <!-- Storage sheet -->
+    <string name="fab_storage_desc">Storage actions</string>
+    <string name="action_select">Select</string>
+    <string name="action_select_all">Select all</string>
+    <string name="action_delete_selected">Delete selected</string>
+    <string name="action_export_selected">Export selected</string>
+    <string name="action_upload_selected">Upload to module</string>
+    <string name="action_cancel_selection">Cancel selection</string>
+    <string name="action_import_from_module">Import from module</string>
+    <string name="action_select_waypoints">Select waypoints</string>
+    <string name="action_share">Share</string>
+    <string name="action_local_download">Local download</string>
+    <string name="action_delete">Delete</string>
+
+    <!-- Upload / download dialogs -->
+    <string name="dialog_upload_to_module_title">Upload to module</string>
+    <string name="dialog_upload_to_module_message">Replace all fingerprints on the module with the %d selected waypoint(s)? This cannot be undone.</string>
+    <string name="dialog_download_from_module_title">Import from module</string>
+    <string name="dialog_download_from_module_message">Import waypoints from the module and merge with local storage. Existing waypoints will not be overwritten.</string>
+
+    <!-- ================================================================ -->
+    <!-- SYSTEM                                                           -->
+    <!-- ================================================================ -->
+
+    <!-- Menu -->
+    <string name="menu_preferences">Preferences</string>
+    <string name="menu_system_log">System Log</string>
+    <string name="menu_change_pin">Change PIN</string>
+    <string name="menu_about">About</string>
+
+    <!-- Preferences screen -->
+    <string name="pref_header_modules">Modules</string>
+    <string name="pref_item_module_purge_days">Module history (days)</string>
+    <string name="pref_item_module_purge_days_summary">Remove modules not seen for this many days</string>
+
+    <string name="pref_item_module_http_port">HTTP port</string>
+    <string name="pref_item_udp_discovery_port">UDP discovery port</string>
+    <string name="pref_item_udp_discovery_magic">UDP discovery magic</string>
+    <string name="pref_item_mdns_service_type">mDNS service type</string>
+
+    <string name="pref_item_mqtt_topic_base">Topic base</string>
+
+    <string name="pref_header_security">Security</string>
+    <string name="pref_item_unlock_code">Unlock code</string>
+    <string name="pref_item_unlock_code_summary">Require code on app launch</string>
+
+    <string name="pref_header_mqtt">MQTT</string>
+    <string name="pref_item_mqtt_broker_host">Broker host</string>
+    <string name="pref_item_mqtt_broker_port">Broker port</string>
+    <string name="pref_item_default_api_key">Default API key</string>
+    <string name="pref_item_default_api_key_summary">Fallback key used when no per-module key is stored</string>
+
+    <string name="pref_header_scrambler">Scrambler</string>
+    <string name="pref_item_scrambler_enabled">Scrambler (MQTT)</string>
+    <string name="pref_item_scrambler_enabled_summary">Encrypt MQTT payloads — firmware must use the same key</string>
+    <string name="pref_item_scrambler_key">Scrambler key</string>
+    <string name="pref_item_scrambler_key_summary">Must match DEFAULT_SCRAMBLER_KEY in firmware</string>
+    <string name="pref_item_http_scrambler_enabled">Scrambler (HTTP)</string>
+    <string name="pref_item_http_scrambler_enabled_summary">Encode HTTP API payloads. Requires matching firmware support.</string>
+
+    <string name="pref_header_discovery">Discovery</string>
+    <string name="pref_item_scan_timeout">LAN scan speed</string>
+
+    <string name="pref_header_fingerprinting">Fingerprinting</string>
+    <string name="pref_item_save_5ghz">Save 5 GHz networks</string>
+    <string name="pref_item_save_5ghz_summary">Off by default — current ESP32 firmware scans 2.4 GHz only</string>
+    <string name="pref_item_fingerprint_max_networks">Max networks per waypoint</string>
+    <string name="pref_item_fingerprint_min_signal">Minimum signal strength</string>
+
+    <string name="pref_header_logs">Logs</string>
+    <string name="pref_item_log_level">Log level</string>
+
+    <!-- Preference value indicators -->
+    <string name="preference_value_masked">●●●●●●  (tap to change)</string>
+    <string name="preference_value_not_set">Not set</string>
+
+    <!-- ================================================================ -->
+    <!-- Import Config                                                    -->
+    <!-- ================================================================ -->
+
+    <string name="menu_import_config">Import Configuration</string>
+    <string name="import_config_instruction">Scan a configuration QR code to import preferences.</string>
+    <string name="import_config_scan">Scan QR Code</string>
+    <string name="import_config_scan_prompt">Scan configuration QR</string>
+    <string name="import_config_confirm_title">Apply Configuration</string>
+    <string name="import_config_success">Configuration applied.</string>
+    <string name="import_config_invalid">Invalid or unrecognized QR code.</string>
+    <string name="import_config_failed">Failed to apply configuration.</string>
+
+    <!-- ================================================================ -->
+    <!-- AUTH                                                             -->
+    <!-- ================================================================ -->
+
+    <string name="enter_code">Enter unlock code</string>
+    <string name="set_new_code">New unlock code</string>
+    <string name="enter_current_code">Current unlock code</string>
+    <string name="reenter_new_code">Re-enter code</string>
+    <string name="biometric_prompt_title">Fingerprint authentication</string>
+    <string name="biometric_prompt_subtitle">Use your fingerprint to unlock</string>
+    <string name="biometric_auth_error">Biometric authentication error</string>
+
+    <!-- Location permission dialog -->
+    <string name="location_required_title">Location required</string>
+    <string name="location_required_msg">Location services must be enabled for WiFi scanning to work.</string>
+
+    <!-- ================================================================ -->
+    <!-- LOG                                                              -->
+    <!-- ================================================================ -->
+
+    <string name="lf_msg_confirm_delete_log">Clear the log?</string>
+    <string name="log_lines_count">%d lines</string>
+    <string name="clipboard_label_log">Log</string>
+
+    <!-- ================================================================ -->
+    <!-- ABOUT                                                            -->
+    <!-- ================================================================ -->
+
+    <string name="about_tagline">Companion app for managing, monitoring, and configuring vger32 ESP32 modules</string>
+    <string name="about_version_fmt">v%s</string>
+
+</resources>

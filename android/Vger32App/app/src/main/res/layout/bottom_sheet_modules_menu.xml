@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_bottom_sheet"
+    android:paddingBottom="@dimen/spacing_l">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:background="@color/color400"
+        android:backgroundTint="@color/color400" />
+
+    <!-- Discovery -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_l"
+        android:layout_marginEnd="@dimen/spacing_l"
+        android:layout_marginBottom="@dimen/spacing_s"
+        app:cardBackgroundColor="@color/cardView"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/separator">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_s"
+                android:text="@string/sheet_title_discovery"
+                style="@style/SectionHeaderStyle" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/action_mqtt_ping"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_mqtt"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_mqtt_ping" />
+
+            <TextView
+                android:id="@+id/action_mdns"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_broadcast_on_home"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_mdns_discover" />
+
+            <TextView
+                android:id="@+id/action_udp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_lan"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_udp_discover" />
+
+            <TextView
+                android:id="@+id/action_ip"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_language"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_connect_by_ip" />
+
+            <TextView
+                android:id="@+id/action_connect_ap"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_language"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_connect_ap" />
+
+            <TextView
+                android:id="@+id/action_scan"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/spacing_l"
+                android:paddingEnd="@dimen/spacing_l"
+                android:textSize="@dimen/text_size_m"
+                android:textColor="?attr/colorOnSurface"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/spacing_m"
+                app:drawableTint="?attr/colorControlNormal"
+                android:text="@string/menu_lan_scan" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Forget all modules -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_l"
+        android:layout_marginEnd="@dimen/spacing_l"
+        app:cardBackgroundColor="@color/cardView"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/separator">
+
+        <TextView
+            android:id="@+id/action_forget_all"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_l"
+            android:paddingEnd="@dimen/spacing_l"
+            android:textSize="@dimen/text_size_m"
+            android:textColor="?attr/colorOnSurface"
+            android:background="?attr/selectableItemBackground"
+            android:drawableStart="@drawable/ic_delete_simple"
+            android:drawablePadding="@dimen/spacing_m"
+            app:drawableTint="?attr/colorControlNormal"
+            android:text="@string/menu_forget_all_modules" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

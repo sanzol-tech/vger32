@@ -1,0 +1,117 @@
+ESTÁNDARES DE CODIFICACIÓN
+================================================================================
+PARTE 1 — GENERAL
+================================================================================
+
+1. IDIOMA
+  Todo el código en inglés. Excepción: este archivo y documentación del proyecto.
+
+2. COMENTARIOS
+  Solo tres formas válidas:
+    a) Header de clase: /* ... */ seguido de una línea en blanco antes de la declaración.
+       El header describe qué hace la clase. No incluir el nombre de la clase
+       (se repite en la declaración y queda desincronizado si se renombra).
+       Formato:
+         /*
+          * Qué hace esta clase en una o dos oraciones.
+          * Detalles adicionales si son necesarios para quien la usa.
+          */
+
+         public class MiClase {
+    b) Separador de sección (dos líneas):
+         // --------------------------------------------------------
+         // --- NOMBRE DE SECCIÓN ----------------------------------
+       Variante sin título (para separar lifecycle / helpers al final):
+         // --------------------------------------------------------
+    c) Explicación puntual donde el código solo no alcanza.
+  TODOs van en TODO.txt, no en el código.
+  Excepción: // TODO en catch{} vacíos es válido como marcador de error handling pendiente.
+
+3. CONSTANTES Y CONFIGURACIÓN
+  strings.xml  — todo texto visible al usuario. Excepción: identificadores técnicos
+                 de protocolo que se renderizan como badge interno (tipo de paquete,
+                 nivel de log, fuente de datos) pueden ser literales en su clase.
+  dimens.xml   — todo tamaño de texto (text_size_*) y espaciado estándar (spacing_*).
+  colors.xml   — todo color en XML como @color/nombre. Cero hex hardcodeados en XML.
+  AppConfig.java — constantes compartidas entre dos o más clases. El criterio para
+                   mover a AppConfig es concepto compartido + uso en múltiples clases,
+                   no valor igual. Constantes con igual valor pero distinto concepto
+                   o uso local pueden vivir en su clase.
+
+4. ARQUITECTURA ANDROID
+  Un método por acción de UI: setOnClickListener(v -> fetchRestart()), nunca lógica inline.
+  ViewModel para estado que sobrevive cambios de tab o configuración.
+  ViewBinding: asignar en onCreateView(), nullear en onDestroyView().
+  UI thread desde background:
+    a.runOnUiThread(() -> { if (binding != null) r.run(); });
+  Listeners multi-thread: volatile + captura local antes de usar.
+
+5. RECURSOS — REGLAS DE ORO
+  ✓ Texto de usuario     → @string/
+  ✓ Tamaños de texto     → @dimen/text_size_*
+  ✓ Padding/margin       → @dimen/spacing_*
+  ✓ Colores              → @color/
+  ✗ Strings hardcodeados en XML
+  ✗ Valores sp/dp cuando existe dimen equivalente
+  ✗ Hex hardcodeados en XML
+
+6. COLOR EN CÓDIGO JAVA
+  Siempre ContextCompat.getColor(context, R.color.x).
+  Nunca getResources().getColor(R.color.x, null).
+
+================================================================================
+PARTE 2 — ESPECÍFICO DEL PROYECTO
+================================================================================
+
+7. ESTILOS DE BOTONES
+  Widget.App.Button.Outlined — todo botón de acción visible. Nunca TextButton.
+  Widget.App.KeyButton / KeyButtonIcon — exclusivo para el teclado PIN.
+  FAB — solo para abrir bottom sheets en pantallas sin botón de acción primaria visible.
+        Ícono: ic_menu.
+
+8. CAMPOS DE ENTRADA
+  Siempre EditText con style="@style/Widget.App.EditText".
+  Nunca TextInputLayout en layouts nuevos.
+  Nunca EditText creado programáticamente en diálogos: inflar dialog_input.xml.
+
+9. BASEFRAGMENT — HELPERS
+  Todos los Fragments extienden BaseFragment. Usar sus helpers; no replicar inline.
+  toast(@StringRes) / toast(String)           — confirmaciones inmediatas.
+  toastLong(@StringRes) / toastLong(String)   — errores y resultados de red.
+  confirm(...)         — acciones destructivas.
+  inputDialog(...)     — entrada de texto libre. No inflar dialog_input.xml directo.
+  showMessageDialog(String, MessageType)       — INFO / ERROR / FATAL.
+  runOnUi(Runnable)    — dispatch al UI thread desde background.
+  Nunca Toast.makeText() directo en subclases.
+
+10. DURACIÓN DE TOAST
+  toast()      — acción inmediata exitosa ("Keys saved", "Copied to clipboard").
+  toastLong()  — error o resultado de operación de red o background.
+  Nunca pasar e.getMessage() como toast. Usar un string localizado.
+
+11. BOTTOM SHEET DIALOG
+  Campo en el Fragment: private BottomSheetDialog activeSheet;
+  onDestroyView(): dismiss() + null sobre activeSheet.
+  Al abrir: verificar isShowing() antes de crear (stacking guard).
+  Guardar referencia en activeSheet antes de show().
+  Múltiples sheets: un campo por cada uno.
+
+12. BACKGROUND EN VIEWMODELS
+  private final ExecutorService executor = Executors.newSingleThreadExecutor();
+  onCleared(): executor.shutdownNow().
+  postValue() desde el executor, nunca setValue().
+  newFixedThreadPool(N) solo cuando el paralelismo es intencional (ej. LAN scan).
+  Nunca AsyncTask ni Thread directo en ViewModels.
+
+13. OBSERVER DE MODULESTORE
+  Implementar ModuleStore.OnModuleUpdateListener en el ViewModel, no en el Fragment.
+  Registrar en el constructor del ViewModel con addListener(this).
+  Desregistrar en onCleared() con removeListener(this). Nunca omitir este paso.
+
+14. LAYOUTS
+  ConstraintLayout como raíz preferida. LinearLayout solo para listas simples
+  de orientación única (bottom sheets, columnas de formulario).
+  Todo margen y padding → @dimen/spacing_* (nunca dp directo).
+  Colores adaptativos → ?attr/colorOnSurface, ?attr/colorControlNormal.
+  @color/ solo para valores semánticos fijos (errores, estados, marca).
+  tools:ignore="HardcodedText" solo en layouts de debug; nunca en producción.

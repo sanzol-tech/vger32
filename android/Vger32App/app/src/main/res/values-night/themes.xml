@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:fontFamily">@font/karla_medium</item>
+
+        <!-- Brand primary -->
+        <item name="colorPrimary">@color/brand200</item>
+        <item name="colorOnPrimary">@color/brand_on</item>
+        <item name="colorPrimaryContainer">@color/color300</item>
+        <item name="colorOnPrimaryContainer">@color/color800</item>
+
+        <!-- Surface and background -->
+        <item name="colorSurface">@color/color100</item>
+        <item name="colorOnSurface">@color/color900</item>
+        <item name="colorSurfaceVariant">@color/color200</item>
+        <item name="colorOnSurfaceVariant">@color/color700</item>
+        <item name="android:colorBackground">@color/color100</item>
+        <item name="colorOnBackground">@color/color700</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/RED</item>
+        <item name="colorOnError">@color/color000</item>
+        <item name="colorErrorContainer">#ff4A1A10</item>
+        <item name="colorOnErrorContainer">#ffFF8A70</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@color/color100</item>
+        <item name="android:navigationBarColor">@color/color100</item>
+        <item name="android:windowBackground">@color/color100</item>
+        <item name="android:textColor">@color/color700</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+    </style>
+
+</resources>

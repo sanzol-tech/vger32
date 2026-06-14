@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+  <!-- Fondo negro -->
+  <rect width="108" height="108" fill="#000000"/>
+
+  <!-- Chip ESP32 estilizado (rectángulo con patillas) -->
+  <g stroke="#00FF00" stroke-width="1.5" fill="none">
+    <rect x="30" y="30" width="48" height="48" rx="4" stroke="#00FF00"/>
+    <!-- Pines laterales -->
+    <line x1="20" y1="38" x2="30" y2="38" stroke="#00FF00"/>
+    <line x1="20" y1="46" x2="30" y2="46" stroke="#00FF00"/>
+    <line x1="20" y1="54" x2="30" y2="54" stroke="#00FF00"/>
+    <line x1="20" y1="62" x2="30" y2="62" stroke="#00FF00"/>
+    <line x1="78" y1="38" x2="88" y2="38" stroke="#00FF00"/>
+    <line x1="78" y1="46" x2="88" y2="46" stroke="#00FF00"/>
+    <line x1="78" y1="54" x2="88" y2="54" stroke="#00FF00"/>
+    <line x1="78" y1="62" x2="88" y2="62" stroke="#00FF00"/>
+    <line x1="46" y1="20" x2="46" y2="30" stroke="#00FF00"/>
+    <line x1="54" y1="20" x2="54" y2="30" stroke="#00FF00"/>
+    <line x1="62" y1="20" x2="62" y2="30" stroke="#00FF00"/>
+    <line x1="46" y1="78" x2="46" y2="88" stroke="#00FF00"/>
+    <line x1="54" y1="78" x2="54" y2="88" stroke="#00FF00"/>
+    <line x1="62" y1="78" x2="62" y2="88" stroke="#00FF00"/>
+  </g>
+
+  <!-- Letra "V" estilizada con líneas gruesas -->
+  <g stroke="#00FF00" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M 44 44 L 54 66 L 64 44" stroke="#00FF00"/>
+    <path d="M 48 44 L 54 60 L 60 44" stroke="#00FF00" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <!-- Trazos de circuitos que conectan la V con el chip -->
+  <g stroke="#00FF00" stroke-width="1.8" fill="none">
+    <path d="M 54 44 L 54 30" stroke="#00FF00"/>
+    <path d="M 68 44 L 78 44 L 78 38" stroke="#00FF00"/>
+    <path d="M 40 44 L 30 44 L 30 38" stroke="#00FF00"/>
+    <circle cx="54" cy="30" r="2" fill="#00FF00" stroke="none"/>
+    <circle cx="78" cy="38" r="2" fill="#00FF00" stroke="none"/>
+    <circle cx="30" cy="38" r="2" fill="#00FF00" stroke="none"/>
+  </g>
+
+  <!-- Detalle "ojo" digital -->
+  <g stroke="#00FF00" fill="none">
+    <circle cx="78" cy="68" r="8" stroke="#00FF00" stroke-width="1.5"/>
+    <line x1="78" y1="62" x2="78" y2="60" stroke="#00FF00" stroke-width="1.2"/>
+    <line x1="84" y1="68" x2="86" y2="68" stroke="#00FF00" stroke-width="1.2"/>
+    <line x1="78" y1="74" x2="78" y2="76" stroke="#00FF00" stroke-width="1.2"/>
+    <line x1="72" y1="68" x2="70" y2="68" stroke="#00FF00" stroke-width="1.2"/>
+  </g>
+</svg>

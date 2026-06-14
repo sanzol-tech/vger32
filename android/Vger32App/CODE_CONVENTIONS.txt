@@ -1,0 +1,118 @@
+CODING CONVENTIONS
+================================================================================
+PART 1 — GENERAL
+================================================================================
+
+1. LANGUAGE
+  All code in English. Exception: this file and project documentation.
+
+2. COMMENTS
+  Three valid forms only:
+    a) Class header: /* ... */ followed by one blank line before the declaration.
+       The header describes what the class does. Do not include the class name
+       (it repeats the declaration and goes stale on rename).
+       Format:
+         /*
+          * What this class does in one or two sentences.
+          * Additional detail if needed for callers.
+          */
+
+         public class MyClass {
+    b) Section separator (two lines):
+         // --------------------------------------------------------
+         // --- SECTION NAME ---------------------------------------
+       Title-less variant (for lifecycle / helper methods at the end of a class):
+         // --------------------------------------------------------
+    c) Targeted explanation where the code alone is not enough.
+  TODOs go in TODO.txt, not in source files.
+  Exception: // TODO inside empty catch{} blocks is valid as a marker for
+  undefined error-handling strategy.
+
+3. CONSTANTS AND CONFIGURATION
+  strings.xml  — all user-visible text. Exception: technical protocol identifiers
+                 rendered as internal badges (packet type, log level, data source)
+                 may remain as literals in their class.
+  dimens.xml   — all text sizes (text_size_*) and standard spacing (spacing_*).
+  colors.xml   — all colors in XML as @color/name. Zero hardcoded hex in XML.
+  AppConfig.java — constants shared across two or more classes. The criterion for
+                   moving to AppConfig is shared concept + multi-class usage, not
+                   equal value. Constants with the same value but different concept
+                   or single-class usage may remain local.
+
+4. ANDROID ARCHITECTURE
+  One method per UI action: setOnClickListener(v -> fetchRestart()), never inline logic.
+  ViewModel for state that must survive tab switches or configuration changes.
+  ViewBinding: assign in onCreateView(), null in onDestroyView().
+  UI thread from background:
+    a.runOnUiThread(() -> { if (binding != null) r.run(); });
+  Multi-thread listeners: volatile + local capture before use.
+
+5. RESOURCES — GOLDEN RULES
+  ✓ User text         → @string/
+  ✓ Text sizes        → @dimen/text_size_*
+  ✓ Padding/margin    → @dimen/spacing_*
+  ✓ Colors            → @color/
+  ✗ Hardcoded user strings in XML
+  ✗ Hardcoded sp/dp when an equivalent dimen exists
+  ✗ Hardcoded hex in XML
+
+6. COLOR IN JAVA CODE
+  Always ContextCompat.getColor(context, R.color.x).
+  Never getResources().getColor(R.color.x, null).
+
+================================================================================
+PART 2 — PROJECT-SPECIFIC
+================================================================================
+
+7. BUTTON STYLES
+  Widget.App.Button.Outlined — all visible action buttons. Never TextButton.
+  Widget.App.KeyButton / KeyButtonIcon — PIN pad only.
+  FAB — only to open bottom sheets in screens without a visible primary action button.
+        Icon: ic_menu.
+
+8. INPUT FIELDS
+  Always EditText with style="@style/Widget.App.EditText".
+  Never TextInputLayout in new layouts.
+  Never EditText created programmatically in dialogs: inflate dialog_input.xml.
+
+9. BASEFRAGMENT — HELPERS
+  All Fragments extend BaseFragment. Use its helpers; do not replicate inline.
+  toast(@StringRes) / toast(String)           — immediate confirmations.
+  toastLong(@StringRes) / toastLong(String)   — errors and network results.
+  confirm(...)         — destructive actions.
+  inputDialog(...)     — free-text input. Do not inflate dialog_input.xml directly.
+  showMessageDialog(String, MessageType)       — INFO / ERROR / FATAL.
+  runOnUi(Runnable)    — UI thread dispatch from background.
+  Never Toast.makeText() directly in subclasses.
+
+10. TOAST DURATION
+  toast()      — immediate successful action ("Keys saved", "Copied to clipboard").
+  toastLong()  — error or result from a network or background operation.
+  Never pass e.getMessage() as a toast. Use a localized string.
+
+11. BOTTOM SHEET DIALOG
+  Field in Fragment: private BottomSheetDialog activeSheet;
+  onDestroyView(): dismiss() + null activeSheet.
+  On open: check isShowing() before creating (stacking guard).
+  Store reference in activeSheet before show().
+  Multiple sheets: one field per sheet.
+
+12. BACKGROUND WORK IN VIEWMODELS
+  private final ExecutorService executor = Executors.newSingleThreadExecutor();
+  onCleared(): executor.shutdownNow().
+  postValue() from executor, never setValue().
+  newFixedThreadPool(N) only when parallelism is intentional (e.g. LAN scan).
+  Never AsyncTask or raw Thread in ViewModels.
+
+13. MODULESTORE OBSERVER PATTERN
+  Implement ModuleStore.OnModuleUpdateListener in the ViewModel, not the Fragment.
+  Register in the ViewModel constructor with addListener(this).
+  Unregister in onCleared() with removeListener(this). Never skip this.
+
+14. LAYOUTS
+  ConstraintLayout as the preferred root. LinearLayout only for simple
+  single-direction lists (bottom sheets, form columns).
+  All margin and padding → @dimen/spacing_* (never raw dp).
+  Adaptive colors → ?attr/colorOnSurface, ?attr/colorControlNormal.
+  @color/ only for fixed semantic values (errors, states, branding).
+  tools:ignore="HardcodedText" only in debug layouts; never in production.

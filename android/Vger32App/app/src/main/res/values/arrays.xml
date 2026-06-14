@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="log_levels">
+        <item>DEBUG</item>
+        <item>INFO</item>
+        <item>WARN</item>
+        <item>ERROR</item>
+        <item>FATAL</item>
+    </string-array>
+
+    <string-array name="scan_timeout_labels">
+        <item>200ms</item>
+        <item>300ms</item>
+        <item>400ms</item>
+        <item>500ms</item>
+        <item>600ms</item>
+        <item>700ms</item>
+        <item>800ms</item>
+    </string-array>
+
+    <string-array name="scan_timeout_values">
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+    </string-array>
+
+    <string-array name="fingerprint_max_networks_labels">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+
+    <string-array name="fingerprint_max_networks_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+
+    <string-array name="fingerprint_min_signal_labels">
+        <item>No limit</item>
+        <item>−30 dBm</item>
+        <item>−40 dBm</item>
+        <item>−50 dBm</item>
+        <item>−55 dBm</item>
+        <item>−60 dBm</item>
+        <item>−65 dBm</item>
+        <item>−70 dBm</item>
+        <item>−75 dBm</item>
+        <item>−80 dBm</item>
+        <item>−85 dBm</item>
+        <item>−90 dBm</item>
+        <item>−95 dBm</item>
+    </string-array>
+
+    <string-array name="fingerprint_min_signal_values">
+        <item>0</item>
+        <item>-30</item>
+        <item>-40</item>
+        <item>-50</item>
+        <item>-55</item>
+        <item>-60</item>
+        <item>-65</item>
+        <item>-70</item>
+        <item>-75</item>
+        <item>-80</item>
+        <item>-85</item>
+        <item>-90</item>
+        <item>-95</item>
+    </string-array>
+
+</resources>

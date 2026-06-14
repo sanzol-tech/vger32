@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Station Manager Dashboard</title>
+	<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="container">
+
+	<nav class="tab-nav">
+		<button class="tab-btn active" data-tab="module">Module</button>
+		<button class="tab-btn"        data-tab="sensors">Sensors</button>
+		<button class="tab-btn"        data-tab="config">Config</button>
+		<button class="tab-btn"        data-tab="network">Wifi</button>
+	</nav>
+
+	<!-- ==================== MODULE ==================== -->
+	<div class="tab-panel active" id="tab-module">
+
+		<div class="section">
+			<div class="section-header">
+				<div>
+					<div class="section-title">Station Manager</div>
+					<div class="status-sub" id="buildVer"></div>
+				</div>
+				<button class="panel-refresh" id="identityRefreshBtn" title="Refresh">⟳</button>
+			</div>
+			<div class="status-header">
+				<div class="status-item">
+					<div class="status-label">Module</div>
+					<div class="status-value" id="moduleId">N/A</div>
+					<div class="status-sub"   id="chipModel">—</div>
+				</div>
+				<div class="status-item">
+					<div class="status-label">Status</div>
+					<div class="status-value status-connected" id="status">N/A</div>
+					<div class="status-sub"   id="statusIp">—</div>
+				</div>
+				<div class="status-item">
+					<div class="status-label">Profile</div>
+					<div class="status-value" id="activePid">N/A</div>
+				</div>
+				<div class="status-item">
+					<div class="status-label">Uptime</div>
+					<div class="status-value" id="uptime">--:--:--</div>
+				</div>
+				<div class="status-item">
+					<div class="status-label">Time</div>
+					<div class="status-value" id="currentTime">--:--:--</div>
+				</div>
+			</div>
+
+			<div class="expandable-panel">
+				<div class="panel-header" id="bootPanelHeader">
+					<div class="panel-title">Boot History</div>
+					<div class="panel-controls">
+						<button class="panel-refresh" id="bootRefreshBtn" title="Refresh">⟳</button>
+						<button class="panel-toggle"  id="bootPanelBtn">+</button>
+					</div>
+				</div>
+				<div class="panel-content collapsed" id="bootPanel">
+					<div id="bootHistoryList"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-header">
+				<div class="section-title">System Metrics</div>
+				<button class="panel-refresh" id="metricsRefreshBtn" title="Refresh">⟳</button>
+			</div>
+			<div class="metrics-grid" id="metricsGrid"></div>
+		</div>
+
+	</div>
+
+	<!-- ==================== SENSORS ==================== -->
+	<div class="tab-panel" id="tab-sensors">
+
+		<div class="section">
+			<div class="section-header">
+				<div class="section-title">Sensor Values</div>
+				<button class="panel-refresh" id="sensorsRefreshBtn" title="Refresh">⟳</button>
+			</div>
+			<div class="telemetry-grid" id="telemetryGrid"></div>
+
+			<div class="expandable-panel">
+				<div class="panel-header" id="sensorPanelHeader">
+					<div class="panel-title" id="sensorPanelTitle">Sensor History</div>
+					<div class="panel-controls">
+						<button class="panel-refresh" id="sensorRefreshBtn" title="Refresh">⟳</button>
+						<button class="panel-toggle"  id="sensorPanelBtn">−</button>
+					</div>
+				</div>
+				<div class="panel-content" id="sensorPanel">
+					<div id="sensorHistoryList"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- ==================== CONFIG ==================== -->
+	<div class="tab-panel" id="tab-config">
+
+		<div class="section">
+			<div class="section-title">Actions</div>
+			<div class="panel-controls" style="justify-content:flex-end;">
+				<button class="btn-reboot" id="forceApBtn">⊙ AP Mode</button>
+				<button class="btn-reboot" id="rebootBtn">&#x27F3; Reboot</button>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-header">
+				<div class="section-title">Preferences</div>
+				<button class="btn-save" id="savePrefsBtn">✓ Save</button>
+			</div>
+
+			<div class="cap-list">
+				<div class="list-item cap-row">
+					<span class="form-label">Module ID</span>
+					<div class="module-id-field">
+						<span class="module-id-prefix" id="cfgModulePrefix">VGER_</span>
+						<input type="text" class="form-input module-id-input" id="cfgModuleSuffix"
+							   maxlength="8" placeholder="39395"
+							   oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
+					</div>
+				</div>
+			</div>
+
+			<!-- WiFi -->
+			<div class="pref-section-label">WiFi</div>
+			<div class="cap-list">
+				<div class="list-item cap-row">
+					<span class="form-label">Enabled</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgWifi">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">TX Power</span>
+					<select class="pref-select" id="cfgTxpwr">
+						<option value="8_5">8.5 dBm</option>
+						<option value="11">11 dBm</option>
+						<option value="13">13 dBm</option>
+						<option value="15">15 dBm</option>
+						<option value="17">17 dBm</option>
+						<option value="full">Full</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- MQTT -->
+			<div class="pref-section-label">MQTT</div>
+			<div class="config-form">
+				<div class="form-group">
+					<label class="form-label">Server</label>
+					<input type="text" class="form-input" id="cfgMqttServer">
+				</div>
+				<div class="form-group">
+					<label class="form-label">Port</label>
+					<input type="number" class="form-input" id="cfgMqttPort">
+				</div>
+				<div class="form-group">
+					<label class="form-label">Publish Interval (s)</label>
+					<input type="number" class="form-input" id="cfgMqttInterval">
+				</div>
+			</div>
+			<div class="cap-list">
+				<div class="list-item cap-row">
+					<span class="form-label">Enabled</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgMqttEnabled">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Scrambled</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgMqttScrambled">
+				</div>
+			</div>
+
+			<!-- System -->
+			<div class="pref-section-label">System</div>
+
+			<div class="cap-list">
+				<div class="list-item cap-row">
+					<span class="form-label">Time (NTP)</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgTime">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Dashboard</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgDash">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">mDNS Discovery</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgMdns">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">UDP Discovery</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgUdp">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Localizer</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgLocl">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Sleep</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgSlep">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Boot Logger</span>
+					<input type="checkbox" class="cap-checkbox" id="cfgBlog">
+				</div>
+				<div class="list-item cap-row">
+					<span class="form-label">Log Level</span>
+					<select class="pref-select" id="cfgLog">
+						<option value="off">Off</option>
+						<option value="F">Fatal</option>
+						<option value="E">Error</option>
+						<option value="W">Warning</option>
+						<option value="I">Info</option>
+						<option value="D">Debug</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-header">
+				<div class="section-title">Saved Networks</div>
+				<button class="btn-save" id="saveNetworksBtn">✓ Save</button>
+			</div>
+			<div id="savedNetworksList"></div>
+			<button class="btn-add-row" id="addNetworkRowBtn">+ Add network</button>
+		</div>
+
+	</div>
+
+	<!-- ==================== NETWORK & LOCATION ==================== -->
+	<div class="tab-panel" id="tab-network">
+
+		<div class="section">
+			<div class="section-title">Network Information</div>
+			<div class="network-info">
+				<div class="network-detail">
+					<span class="status-label">IP Address</span>
+					<span class="status-value" id="ipAddress">x.x.x.x</span>
+				</div>
+				<div class="network-detail">
+					<span class="status-label">Connection Mode</span>
+					<span class="status-value" id="connMode">N/A</span>
+				</div>
+			</div>
+
+			<div class="expandable-panel">
+				<div class="panel-header" id="wifiPanelHeader">
+					<div class="panel-title">Available Networks</div>
+					<div class="panel-controls">
+						<button class="panel-refresh" id="wifiRefreshBtn" title="Refresh">⟳</button>
+						<button class="panel-save"    id="wifiSaveBtn"    title="Save fingerprint">⤓</button>
+						<button class="panel-toggle"  id="wifiPanelBtn">+</button>
+					</div>
+				</div>
+				<div class="panel-content collapsed" id="wifiPanel">
+					<div id="wifiList"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="section-title">Location History</div>
+			<div class="expandable-panel">
+				<div class="panel-header" id="locationPanelHeader">
+					<div class="panel-title">Recent Detections</div>
+					<div class="panel-controls">
+						<button class="panel-refresh" id="locationRefreshBtn" title="Refresh">⟳</button>
+						<button class="panel-toggle"  id="locationPanelBtn">+</button>
+					</div>
+				</div>
+				<div class="panel-content collapsed" id="locationPanel">
+					<div id="locationList"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="offline-banner" id="offlineBanner">⚠ Device offline — Reconnecting…</div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/cardView"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_m"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:minHeight="56dp">
+
+        <!-- Status dot -->
+        <View
+            android:id="@+id/view_status"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/shape_status_dot"
+            android:layout_marginEnd="@dimen/spacing_m" />
+
+        <!-- Left column: mid / chip·pid / ip -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_s"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:fontFamily="monospace" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="1dp">
+
+                <TextView
+                    android:id="@+id/txt_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_xs"
+                    android:textColor="@color/color600" />
+
+                <TextView
+                    android:id="@+id/txt_chip_sep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_xs"
+                    android:textColor="@color/color600"
+                    android:text=" · "
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txt_pid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_xs"
+                    android:textColor="@color/color600" />
+
+                <TextView
+                    android:id="@+id/txt_pid_sep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_xs"
+                android:textColor="@color/color600"
+                android:fontFamily="monospace"
+                android:layout_marginTop="1dp" />
+
+        </LinearLayout>
+
+        <!-- Right column: lastseen · source -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_marginStart="@dimen/spacing_s">
+
+            <TextView
+                android:id="@+id/txt_lastseen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_xxs"
+                android:textColor="@color/color600" />
+
+            <TextView
+                android:id="@+id/txt_discovery_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_xxs"
+                android:textColor="@color/color600"
+                android:alpha="0.7"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

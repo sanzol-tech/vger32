@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <TextView
+        android:id="@+id/btn_preferences"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_xl"
+        android:paddingEnd="@dimen/spacing_xl"
+        android:text="@string/menu_preferences"
+        android:textSize="@dimen/text_size_m"
+        android:textColor="?attr/colorOnSurface"
+        android:background="?attr/selectableItemBackground"
+        app:drawableStartCompat="@drawable/ic_tune"
+        android:drawablePadding="@dimen/spacing_l" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <TextView
+        android:id="@+id/btn_import_config"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_xl"
+        android:paddingEnd="@dimen/spacing_xl"
+        android:text="@string/menu_import_config"
+        android:textSize="@dimen/text_size_m"
+        android:textColor="?attr/colorOnSurface"
+        android:background="?attr/selectableItemBackground"
+        app:drawableStartCompat="@drawable/ic_qr_code_2"
+        android:drawablePadding="@dimen/spacing_l" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <TextView
+        android:id="@+id/btn_log"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_xl"
+        android:paddingEnd="@dimen/spacing_xl"
+        android:text="@string/menu_system_log"
+        android:textSize="@dimen/text_size_m"
+        android:textColor="?attr/colorOnSurface"
+        android:background="?attr/selectableItemBackground"
+        app:drawableStartCompat="@drawable/ic_data_object"
+        android:drawablePadding="@dimen/spacing_l" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <TextView
+        android:id="@+id/btn_change_pin"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_xl"
+        android:paddingEnd="@dimen/spacing_xl"
+        android:text="@string/menu_change_pin"
+        android:textSize="@dimen/text_size_m"
+        android:textColor="?attr/colorOnSurface"
+        android:background="?attr/selectableItemBackground"
+        app:drawableStartCompat="@drawable/ic_fiber_pin"
+        android:drawablePadding="@dimen/spacing_l" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <TextView
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_xl"
+        android:paddingEnd="@dimen/spacing_xl"
+        android:text="@string/menu_about"
+        android:textSize="@dimen/text_size_m"
+        android:textColor="?attr/colorOnSurface"
+        android:background="?attr/selectableItemBackground"
+        app:drawableStartCompat="@drawable/ic_info"
+        android:drawablePadding="@dimen/spacing_l" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+</LinearLayout>

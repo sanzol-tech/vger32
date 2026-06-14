@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Text sizes
+         10sp — timestamps, badges, tiny labels
+         12sp — secondary text, status, hints
+         14sp — body text, list items
+         16sp — primary text, menu items, titles
+         18sp — section headers
+         22sp — large headings
+         24sp — display / hero text
+    -->
+    <dimen name="text_size_xxs">12sp</dimen>
+    <dimen name="text_size_xs">14sp</dimen>
+    <dimen name="text_size_s">16sp</dimen>
+    <dimen name="text_size_m">18sp</dimen>
+    <dimen name="text_size_l">20sp</dimen>
+    <dimen name="text_size_xl">22sp</dimen>
+    <dimen name="text_size_xxl">32sp</dimen>
+
+    <!-- Icon sizes -->
+    <dimen name="icon_size_s">20dp</dimen>
+    <dimen name="icon_size_m">24dp</dimen>
+    <dimen name="icon_size_l">28dp</dimen>
+
+    <!-- Spacing (layout padding and margin)
+         xs  — tight internal gaps (4dp)
+         s   — standard small gap (8dp)
+         m   — standard medium gap (12dp)
+         l   — standard large gap / screen padding (16dp)
+         xl  — section separation (24dp)
+    -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_s">8dp</dimen>
+    <dimen name="spacing_m">12dp</dimen>
+    <dimen name="spacing_l">16dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="spacing_xxl">32dp</dimen>
+
+</resources>

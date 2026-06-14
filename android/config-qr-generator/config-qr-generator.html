@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vger32App Config QR Generator</title>
+<link rel="stylesheet" href="config-qr-generator.css">
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>VGER32APP — CONFIG QR GENERATOR</h1>
+    <p>Only fields with a value are included. Leaving a field empty clears that preference in the app.</p>
+  </header>
+
+  <div class="fields-col">
+    <div class="section-label">MQTT</div>
+    <div class="field">
+      <label>mqtt_broker_host</label>
+      <input id="f_mqtt_broker_host" type="text" placeholder="broker.example.com">
+    </div>
+    <div class="field">
+      <label>mqtt_broker_port</label>
+      <input id="f_mqtt_broker_port" type="text" placeholder="1883">
+    </div>
+
+    <div class="section-label">Security</div>
+    <div class="field">
+      <label>unlock_code_enabled</label>
+      <select id="f_unlock_code_enabled">
+        <option value="">— skip —</option>
+        <option value="true">true</option>
+        <option value="false">false</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>api_key</label>
+      <input id="f_api_key" type="text" placeholder="">
+    </div>
+    <div class="field">
+      <label>scrambler_key</label>
+      <input id="f_scrambler_key" type="text" placeholder="">
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="qr-box">
+      <div id="qrcode"></div>
+    </div>
+    <button class="btn btn-primary" onclick="generate()">Generate QR</button>
+    <div class="actions-box">
+      <button class="btn btn-ghost" onclick="saveConfig()">⬇ Save config</button>
+      <input type="file" id="file-in" accept=".json" style="display:none" onchange="loadConfig(event)">
+      <button class="btn btn-ghost" onclick="document.getElementById('file-in').click()">⬆ Load config</button>
+    </div>
+  </div>
+
+</div>
+<script src="qrcode.min.js"></script>
+<script src="scrambler.js"></script>
+<script src="secrets.js"></script>
+<script src="config-qr-generator.js"></script>
+</body>
+</html>

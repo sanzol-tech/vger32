@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/screenLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header — takes all space above keyboard -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="32dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_app_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_size_xxl"
+                android:textColor="@color/brand300" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lbl_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/enter_code"
+            android:textSize="@dimen/text_size_m" />
+
+        <LinearLayout
+            android:id="@+id/code_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal">
+
+            <FrameLayout android:id="@+id/cell1" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot1" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+            <FrameLayout android:id="@+id/cell2" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot2" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+            <FrameLayout android:id="@+id/cell3" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot3" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+            <FrameLayout android:id="@+id/cell4" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot4" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+            <FrameLayout android:id="@+id/cell5" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot5" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+            <FrameLayout android:id="@+id/cell6" android:layout_width="24dp" android:layout_height="24dp" android:layout_margin="5dp" android:background="@drawable/shape_unlock_circle">
+                <ImageView android:id="@+id/dot6" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:scaleType="centerInside" android:src="@drawable/ic_dot" android:visibility="gone" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Keyboard — fixed height buttons, centered in remaining space -->
+    <GridLayout
+        android:id="@+id/num_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="24dp"
+        android:columnCount="3"
+        android:rowCount="4">
+
+        <Button android:id="@+id/btn1" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="0" android:layout_column="0" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="1" />
+        <Button android:id="@+id/btn2" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="0" android:layout_column="1" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="2" />
+        <Button android:id="@+id/btn3" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="0" android:layout_column="2" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="3" />
+
+        <Button android:id="@+id/btn4" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="1" android:layout_column="0" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="4" />
+        <Button android:id="@+id/btn5" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="1" android:layout_column="1" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="5" />
+        <Button android:id="@+id/btn6" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="1" android:layout_column="2" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="6" />
+
+        <Button android:id="@+id/btn7" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="2" android:layout_column="0" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="7" />
+        <Button android:id="@+id/btn8" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="2" android:layout_column="1" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="8" />
+        <Button android:id="@+id/btn9" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="2" android:layout_column="2" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="9" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnFP" style="@style/Widget.App.Button.OutlinedIcon" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="3" android:layout_column="0" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" app:icon="@drawable/ic_fingerprint" app:iconSize="26dp" />
+        <Button android:id="@+id/btn0" style="@style/Widget.App.Button.Outlined" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="3" android:layout_column="1" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" android:minWidth="0dp" android:textSize="@dimen/text_size_xl" android:text="0" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/btnBS" style="@style/Widget.App.Button.OutlinedIcon" android:layout_width="0dp" android:layout_height="56dp" android:layout_row="3" android:layout_column="2" android:layout_columnWeight="1" android:layout_margin="@dimen/spacing_m" app:icon="@drawable/ic_backspace" app:iconSize="26dp" />
+
+    </GridLayout>
+
+</LinearLayout>

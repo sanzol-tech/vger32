@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_bottom_sheet"
+    android:paddingBottom="@dimen/spacing_l">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:background="@color/color400"
+        android:backgroundTint="@color/color400" />
+
+    <!-- Module ID + delete -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_l"
+        android:paddingEnd="@dimen/spacing_s"
+        android:paddingBottom="@dimen/spacing_m">
+
+        <TextView
+            android:id="@+id/txt_module_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_m"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
+            android:fontFamily="monospace" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete_module"
+            style="@style/Widget.App.Button.OutlinedIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/btn_delete"
+            app:icon="@drawable/ic_delete_simple" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:background="@color/separator" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_l"
+        android:paddingEnd="@dimen/spacing_l"
+        android:paddingBottom="@dimen/spacing_xs"
+        android:text="@string/module_keys_api_key_label"
+        android:textSize="@dimen/text_size_s"
+        android:textColor="@color/color600" />
+
+    <EditText
+        android:id="@+id/edit_api_key"
+        style="@style/Widget.App.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_l"
+        android:layout_marginEnd="@dimen/spacing_l"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:inputType="textPassword"
+        android:fontFamily="monospace" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_l"
+        android:paddingEnd="@dimen/spacing_l"
+        android:paddingBottom="@dimen/spacing_xs"
+        android:text="@string/module_keys_scrambler_key_label"
+        android:textSize="@dimen/text_size_s"
+        android:textColor="@color/color600" />
+
+    <EditText
+        android:id="@+id/edit_scrambler_key"
+        style="@style/Widget.App.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_l"
+        android:layout_marginEnd="@dimen/spacing_l"
+        android:layout_marginBottom="@dimen/spacing_l"
+        android:inputType="textPassword"
+        android:fontFamily="monospace" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_l"
+        android:paddingEnd="@dimen/spacing_l"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btn_keys_clear"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/spacing_s"
+            android:text="@string/btn_keys_clear"
+            android:textSize="@dimen/text_size_xs" />
+
+        <Button
+            android:id="@+id/btn_keys_save"
+            style="@style/Widget.App.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/btn_save"
+            android:textSize="@dimen/text_size_xs" />
+
+    </LinearLayout>
+
+</LinearLayout>

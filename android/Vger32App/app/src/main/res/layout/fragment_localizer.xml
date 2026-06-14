@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSurface">
+
+    <include
+        android:id="@+id/header_module_selector"
+        layout="@layout/header_module_selector" />
+
+    <!-- Subfragment container — SCAN / MODULE / STORAGE swap here -->
+    <FrameLayout
+        android:id="@+id/localizer_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <!-- Tab bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tab_scan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/localizer_tab_scan"
+            android:textSize="@dimen/text_size_xxs"
+            android:textStyle="bold"
+            android:textColor="@color/color900" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/separator" />
+
+        <TextView
+            android:id="@+id/tab_module"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/localizer_tab_module"
+            android:textSize="@dimen/text_size_xxs"
+            android:textStyle="bold"
+            android:textColor="@color/color400" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/separator" />
+
+        <TextView
+            android:id="@+id/tab_storage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/localizer_tab_storage"
+            android:textSize="@dimen/text_size_xxs"
+            android:textStyle="bold"
+            android:textColor="@color/color400" />
+
+    </LinearLayout>
+
+</LinearLayout>

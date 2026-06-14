@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_bottom_sheet"
+    android:paddingBottom="@dimen/spacing_l">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:background="@color/color400" />
+
+    <!-- Header: title + copy button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_l"
+        android:paddingEnd="@dimen/spacing_m"
+        android:paddingBottom="@dimen/spacing_s">
+
+        <TextView
+            android:id="@+id/txt_result_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_s"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_copy_result"
+            style="@style/Widget.App.Button.IconBorderless"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/action_copy"
+            app:icon="@drawable/ic_content_copy"
+            app:iconTint="@color/color600" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/separator" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="480dp">
+
+        <TextView
+            android:id="@+id/txt_result_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_l"
+            android:fontFamily="@font/inconsolata_condensed_regular"
+            android:textSize="@dimen/text_size_s"
+            android:textColor="?attr/colorOnSurface"
+            android:scrollbars="horizontal|vertical"
+            android:textIsSelectable="true" />
+
+    </ScrollView>
+
+</LinearLayout>
