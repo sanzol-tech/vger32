@@ -1,5 +1,5 @@
 <div align="center">
-<img src="../../images/icon/vger32.svg" alt="VGER32" width="160" />
+<img src="../../images/icon/vger32_01b.svg" alt="VGER32" width="160" />
 
 # VGER32 Android App
 
